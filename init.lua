@@ -1,3 +1,4 @@
+-- corrigido por joseanastacio (josegamestest) Error, texturas das armaduras não aparece no stand
 screwdriver = screwdriver or {}
 local ceil, abs, random = math.ceil, math.abs, math.random
 
@@ -280,6 +281,7 @@ function enchanting:register_tools(mod, def)
 		end
 
 		if mod == "3d_armor" then
+		minetest.chat_send_all("encantados")
 			local original_armor_groups = original_tool.groups
 			local armorcaps = {}
 			armorcaps.not_in_creative_inventory = 1
@@ -298,7 +300,8 @@ function enchanting:register_tools(mod, def)
 				description = "Enchanted "..cap(material).." "..cap(tool)..
 					self:get_tooltip(enchant),
 				inventory_image = original_tool.inventory_image,
-				texture = "3d_armor_"..tool.."_"..material,
+				--texture = "3d_armor_"..tool.."_"..material,
+				texture = mod.."_"..tool.."_"..material..".png",
 				wield_image = original_tool.wield_image,
 				groups = armorcaps,
 				wear = 0
@@ -328,4 +331,3 @@ enchanting:register_tools("3d_armor", {
 		leggings   = {enchants = "strong"}
 	}
 })
-
